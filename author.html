@@ -34,16 +34,55 @@ function resolveForm (){
     }
 }
 </script>
-<!DOCTYPE html>
-<html>
 <head>
-    <title>Explore the world of authors and their works.</title>
+    <title>Author Guessing Game</title>
 </head>
 <body>
     <h1>Author Entry Jyothi Dronamraju</h1>
-    <!-- Your content goes here -->
-</body>
-</html>
+    <form id="authorForm">
+        <label for="secretAuthor">The hidden author name</label>
+        <input type="password" id="secretAuthor" value="Dickens">
+
+        <label for="guessAuthor">Guess the author</label>
+        <input type="text" id="guessAuthor">
+        
+        <input type="button" value="Check the guess" onclick="checkAuthor()">
+    </form>
+
+    <p>Results: <span id="result">Good: 0, Oops: 0</span></p>
+
+    <script>
+        // Global variables
+        var good = 0;
+        var oops = 0;
+
+        // Function to check the author guess
+        function checkAuthor() {
+            var secretAuthorInput = document.getElementById("secretAuthor");
+            var guessAuthorInput = document.getElementById("guessAuthor");
+            var resultElement = document.getElementById("result");
+
+            var secretAuthor = secretAuthorInput.value;
+            var guessAuthor = guessAuthorInput.value;
+
+            if (secretAuthor === guessAuthor) {
+                good++;
+                alert("You got it right!");
+            } else {
+                oops++;
+                alert("Sorry");
+            }
+
+            // Update the result element
+            resultElement.textContent = "Good: " + good + ", Oops: " + oops;
+        }
+
+        // Prevent form submission
+        document.getElementById("authorForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+        });
+    </script>
+
 
 </body>
 </html> 
