@@ -46,5 +46,33 @@
             document.getElementById('cruiseResult').innerHTML = JSON.stringify(my_cruise);
         }
     </script>
+    <form>
+        <label for="daysInput">Enter the number of days:</label>
+        <input type="text" id="daysInput" value="7">
+        <br>
+        <label for="priceInput">Enter price:</label>
+        <input type="text" id="priceInput" value="1000">
+        <br>
+        <input type="button" value="Update the cruise" onclick="updateCruise()">
+    </form>
+        
+    <!-- JavaScript function -->
+    <script>
+        // Function to update cruise properties
+        function updateCruise() {
+            // Get the value from the days input element
+            const days = document.getElementById('daysInput').value;
+    
+            // Get the value from the price input element
+            const price = document.getElementById('priceInput').value;
+    
+            // Set properties of my_cruise with the values from the input elements
+            my_cruise.days = days;
+            my_cruise.price = price;
+    
+            // Replace the innerHTML of the tagged element with my_cruise object
+            document.getElementById('cruiseResult').innerHTML = JSON.stringify(my_cruise);
+        }
+    </script>
 </body>
 </html> 
