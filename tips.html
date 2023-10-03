@@ -36,6 +36,50 @@
             document.getElementById('result').innerHTML = 'Tips are: ' + myOutput;
         }
     </script>
+    <!-- Radio button form for different calculations -->
+<form>
+    <label>
+        <input type="radio" name="operation" value="sum" onclick="chooseOp()"> Sum
+    </label>
+    <label>
+        <input type="radio" name="operation" value="difference" onclick="chooseOp()"> Difference
+    </label>
+    <label>
+        <input type="radio" name="operation" value="product" onclick="chooseOp()"> Product
+    </label>
+</form>
+
+<!-- Result output element for selected operation -->
+<p id="operationResult"></p>
+
+<!-- JavaScript function -->
+<script>
+   // Function to perform selected operation
+function chooseOp() {
+    const baseValue = parseFloat(document.getElementById('baseAmount').value);
+    const tipPercent = parseFloat(document.getElementById('tipPercent').value);
+    const operation = document.querySelector('input[name="operation"]:checked').value;
+    let operationResult = '';
+
+    switch (operation) {
+        case 'sum':
+            operationResult = `Sum of ${baseValue} and ${tipPercent} is ${baseValue + tipPercent}`;
+            break;
+        case 'difference':
+            operationResult = `Difference between ${baseValue} and ${tipPercent} is ${baseValue - tipPercent}`;
+            break;
+        case 'product':
+            operationResult = `Product of ${baseValue} and ${tipPercent} is ${baseValue * tipPercent}`;
+            break;
+        default:
+            operationResult = 'Select an operation';
+    }
+
+    document.getElementById('operationResult').innerHTML = operationResult;
+}
+
+</script>
+
         
 
 </body>
