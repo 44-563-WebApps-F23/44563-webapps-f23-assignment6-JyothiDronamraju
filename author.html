@@ -2,31 +2,43 @@
 <html>
 <head>
     <title>Author Guessing Game</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Author Entry Jyothi Dronamraju</h1>
-    <form id="authorForm">
-        <label for="secretAuthor">The hidden author name</label>
-        <input type="password" id="secretAuthor" value="Dickens">
+    <div class="container">
+        <h1 class="mt-4">Author Entry Jyothi Dronamraju</h1>
+        <form id="authorForm" class="mt-4">
+            <div class="form-group">
+                <label for="secretAuthor">The hidden author name</label>
+                <input type="password" id="secretAuthor" value="Dickens" class="form-control">
+            </div>
+    
+            <div class="form-group">
+                <label for="guessAuthor">Guess the author</label>
+                <input type="text" id="guessAuthor" class="form-control">
+            </div>
+            
+            <button type="button" class="btn btn-primary" onclick="checkAuthor()">Check the guess</button>
+        </form>
 
-        <label for="guessAuthor">Guess the author</label>
-        <input type="text" id="guessAuthor">
-        
-        <input type="button" value="Check the guess" onclick="checkAuthor()">
-    </form>
+        <p class="mt-4">Results: <span id="result">Good: 0, Oops: 0</span></p>
 
-    <p>Results: <span id="result">Good: 0, Oops: 0</span></p>
+        <div id="incorrectGuesses" class="mt-4"></div>
+    </div>
 
     <script>
         // Global variables
         var good = 0;
         var oops = 0;
+        var incorrectGuessCount = 0;
 
         // Function to check the author guess
         function checkAuthor() {
             var secretAuthorInput = document.getElementById("secretAuthor");
             var guessAuthorInput = document.getElementById("guessAuthor");
             var resultElement = document.getElementById("result");
+            var incorrectGuessesElement = document.getElementById("incorrectGuesses");
 
             var secretAuthor = secretAuthorInput.value;
             var guessAuthor = guessAuthorInput.value;
@@ -36,37 +48,27 @@
                 alert("You got it right!");
             } else {
                 oops++;
-                alert("Sorry");
+                incorrectGuessCount++;
+
+                // Display incorrect guess
+                if (incorrectGuessCount <= 7) {
+                    incorrectGuessesElement.innerHTML += `<div class="alert alert-danger">Incorrect guess #${incorrectGuessCount}: ${guessAuthor}</div>`;
+                } else {
+                    // After 7 incorrect guesses, disable the button and show an alert
+                    document.getElementById("guessAuthor").disabled = true;
+                    document.querySelector('button').setAttribute('onclick', 'alert("Sorry, ran out of guesses.")');
+                }
             }
 
             // Update the result element
             resultElement.textContent = "Good: " + good + ", Oops: " + oops;
         }
-
-        // Prevent form submission
-        document.getElementById("authorForm").addEventListener("submit", function (e) {
-            e.preventDefault();
-        });
     </script>
 
-
-<head>
-   
-    <title>City Images</title>
-</head>
-<body>
-    <!-- Step 2: Add a div container and add one of the images to the container. Make the size of the image 100 by 100. -->
-    <div id="imageContainer">
-        <img id="cityImage" src="Rome.jpg" alt="City" width="100" height="100" onclick="selectImage()">
-    </div>
-
-    <!-- Step 4: Add a script. Make a global variable useImage with value 1 -->
     <script>
         let useImage = 1;
 
-        // Step 5: Create a function selectImage().
         function selectImage() {
-            // Step 5a: Do a switch on the useImage with three cases (1, 2, 3)
             switch (useImage) {
                 case 1:
                     document.getElementById('cityImage').src = 'Rome.jpg';
@@ -83,10 +85,28 @@
             }
         }
     </script>
+
+    <style>
+        #imageContainer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #cityImage {
+            cursor: pointer;
+        }
+    </style>
+
+    <div class="container">
+        <h1 class="mt-4">City Images</h1>
+        <div id="imageContainer">
+            <img id="cityImage" src="Rome.jpg" alt="City" width="100" height="100" onclick="selectImage()">
+        </div>
+    </div>
+    
+    <!-- Add Bootstrap JS and Popper.js (required for Bootstrap) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
-
-
-</body>
-</html> 
