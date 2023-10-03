@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+ 
+    <head>
+        <title>Tip Calculator - Calculate Tip Amounts.</title>
+    </head>
+    <body>
+        <h1>Shows tips amount Jyothi Dronamraju</h1>
+
+     
+        <label for="baseAmount">Enter base amount:</label>
+    <input type="number" id="baseAmount" value="50">
+    <br>
+    <label for="tipPercent">Enter the tip percent:</label>
+    <input type="number" id="tipPercent" value="15">
+    <br>
+    <!-- Button to calculate tips -->
+    <input type="button" value="Show tip" onclick="tips()">
+    <br>
+    <!-- Result output element -->
+    <p id="result"></p>
+
+    <!-- JavaScript function -->
+    <script>
+        // Function to calculate and display tips
+        function tips() {
+            const baseValue = parseFloat(document.getElementById('baseAmount').value);
+            const tipPercent = parseFloat(document.getElementById('tipPercent').value);
+            let myOutput = '';
+
+            for (let i = 0; i < 5; i++) {
+                const calculatedTip = baseValue * (tipPercent + (i * 4)) / 100;
+                myOutput += `${tipPercent + (i * 4)}% is $${calculatedTip.toFixed(2)}; `;
+            }
+
+            document.getElementById('result').innerHTML = 'Tips are: ' + myOutput;
+        }
+    </script>
+        
+
+</body>
+</html> 
