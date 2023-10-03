@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cruise Selection</title>
+</head>
+<body>
+    <h1>Jyothi Dronamraju goes on a cruise</h1>
+        <form>
+        <label for="checkbox1">
+            <input type="checkbox" id="checkbox1" value="True"> Shares Cabin
+        </label>
+        <br>
+        <label for="checkbox2">
+            <input type="checkbox" id="checkbox2" value="True"> Breakfast
+        </label>
+        <br>
+        <label for="checkbox3">
+            <input type="checkbox" id="checkbox3" value="False"> Pool Pass
+        </label>
+    </form>
+    
+    <!-- Button to select a cruise -->
+    <input type="button" value="Select a cruise" onclick="selectCruise()">
+    
+    <!-- Result output element -->
+    <p id="cruiseResult"></p>
+
+    <!-- JavaScript function -->
+    <script>
+        // Global variable to store cruise selections
+        let my_cruise = {};
+
+        // Function to select a cruise based on checkbox selections
+        function selectCruise() {
+            // Reset my_cruise to an empty object
+            my_cruise = {};
+
+            // Set properties based on checkbox selections
+            my_cruise.shared = document.getElementById('checkbox1').checked;
+            my_cruise.breakfast = document.getElementById('checkbox2').checked;
+            my_cruise.pool = document.getElementById('checkbox3').checked;
+
+            // Replace the innerHTML of the result element with my_cruise object
+            document.getElementById('cruiseResult').innerHTML = JSON.stringify(my_cruise);
+        }
+    </script>
+</body>
+</html> 
